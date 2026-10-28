@@ -1,0 +1,56 @@
+ONLINE DEPLOYMENT: VERCEL + SUPABASE
+=====================================
+
+A. SUPABASE
+1. supabase.com par account/project banayein.
+2. Project ka database password sambhal kar rakhein.
+3. Project dashboard me Connect kholein.
+4. Transaction Pooler connection string copy karein (port aam taur par 6543).
+5. Connection string me [YOUR-PASSWORD] ko actual DB password se replace karein.
+
+B. GITHUB
+1. Is ZIP ko extract karein.
+2. GitHub par new repository banayein.
+3. ZIP ke andar ki files repository root me upload karein. Outer folder upload na karein.
+4. Commit changes karein.
+
+C. VERCEL
+1. vercel.com par Add New > Project.
+2. GitHub repository import karein.
+3. Framework preset Other rehne dein. Build/Output commands blank rehne dein.
+4. Environment Variables me ye 5 variables add karein:
+   DATABASE_URL = Supabase Transaction Pooler URI
+   SECRET_KEY = long random secret
+   DEVELOPER_USERNAME = developer
+   DEVELOPER_PASSWORD = strong password
+   PORTAL_PUBLIC_URL = pehle temporary https://project-name.vercel.app; deploy ke baad exact domain update karke redeploy karein.
+5. Har variable ke liye Production aur Preview select karein.
+6. Deploy click karein.
+7. Domain milne ke baad PORTAL_PUBLIC_URL ko exact domain se update karke Redeploy karein.
+
+D. FIRST LOGIN
+Developer: https://YOUR_DOMAIN/developer/login
+Store users: https://YOUR_DOMAIN/login
+Developer credentials Vercel variables wale honge.
+
+E. TEST
+1. Developer login.
+2. Store create.
+3. Store ke andar user create.
+4. Logout.
+5. Store code, username, password se store login.
+6. Excel import.
+7. Supabase Table Editor me products row verify.
+8. Vercel redeploy karke verify karein ki data ab bhi hai.
+
+F. PRINT BRIDGE
+1. Developer Portal me store ke saamne Local Bridge ZIP download karein.
+2. Printer wale Windows PC par extract karein.
+3. Python install karein aur run_bridge.bat chalayein.
+4. Exact printer ke liye local_bridge.py ke print_label function me printer command configure karni hogi.
+
+IMPORTANT
+- DATABASE_URL missing ho to app jaan-boojhkar startup error degi; local temporary SQLite par silently save nahi karegi.
+- Supabase API URL (https://...supabase.co) DATABASE_URL nahi hai.
+- Database connection URI hi use karein.
+- Secrets ko GitHub code me paste na karein; sirf Vercel Environment Variables me rakhein.
